@@ -1,0 +1,47 @@
+DASHSCOPE_APIKEY: sk-be06880e6b59496ab0074041dd2fe147
+SEARCH_APIKEY: QV5jbf4ZsFGa76m5mbYEaz6T
+server:
+  port: 8000
+  address: 0.0.0.0
+
+spring:
+  datasource:
+    url: jdbc:postgresql://172.29.12.5:5433/springai
+    username: postgres
+    password: postgres
+    hikari:
+      maximum-pool-size: 60
+      minimum-idle: 5
+      connection-test-query: SELECT 1
+      connection-init-sql: SELECT 1
+
+langchain4j:
+#    community:
+#      dashscope:
+#        chat-model:
+#          api-key: ${DASHSCOPE_APIKEY}
+#  #        #model-name: deepseek-v3
+#  #        #model_name: qwen-max
+#          model-name: qwen-max-latest
+    ollama:
+      chat-model:
+        base-url: http://localhost:11434
+        #model-name: llama3.1
+        #model-name: deepseek-r1:1.5b
+        model-name: llava
+      embedding-model:
+        base-url: http://localhost:11434
+        model-name: all-minilm
+
+pgvector:
+  database: springai
+  host: 47.122.72.106
+  port : 54333
+  user: pgvector
+  password: pgvector
+  table: my_embeddings
+
+search:
+  apiKey: ${SEARCH_APIKEY}
+  engine: baidu
+
